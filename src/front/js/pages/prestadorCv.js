@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import "../../styles/prestadorCv.css";
 
-import "./../pages/home.js";
+import "./home.js";
 
 // // const data = [
 //   {
@@ -89,7 +89,7 @@ const JobPost = ({
         </p>
       </div>
 
-      <Link to={`/segundoPerfil/${idUsuario}`} className="btn btn-success">  
+      <Link to={`/Prestador/${idUsuario}`} className="btn btn-success">  
         Contactar
       </Link>
     </div>
@@ -102,7 +102,7 @@ const PrestadorCv = () => {
 
   const [filteredCategoria, setFilteredCategoria] = useState(null); // Estado para filtrar por categoría
   useEffect(() => {
-    fetch("http://localhost:3001/publicacion")
+    fetch("http://localhost:3001/publicaciones")
       .then((response) => response.json())
       .then((data) => {
         setData(data.publicaciones);
@@ -121,61 +121,9 @@ const PrestadorCv = () => {
 
   return (
     <div
-      className="container row"
+      className="container row mt-5"
       style={{ justifyContent: "center", margin: "0 auto" }}
     >
-      <div className="prestadores-cv-container">
-        <button
-          type="button"
-          className="btn btn btn-lg"
-          style={{
-            background: "#3Bd7BA",
-            margin: "5px",
-          }}
-        >
-          Aseo
-        </button>
-        <button
-          type="button"
-          className="btn btn btn-lg"
-          style={{
-            background: "#3Bd7BA",
-            margin: "5px",
-          }}
-        >
-          Carpintería
-        </button>
-        <button
-          type="button"
-          className="btn btn btn-lg"
-          style={{
-            background: "#3Bd7BA",
-            margin: "5px",
-          }}
-        >
-          Electricista
-        </button>
-        <button
-          type="button"
-          className="btn btn btn-lg"
-          style={{
-            background: "#3Bd7BA",
-            margin: "5px",
-          }}
-        >
-          Gasfitería
-        </button>
-        <button
-          type="button"
-          className="btn btn btn-lg"
-          style={{
-            background: "#3Bd7BA",
-            margin: "5px",
-          }}
-        >
-          Pintor
-        </button>
-      </div>
       <div className="row flex-column">
         {data?.map((element, index) => {
           console.log(element)

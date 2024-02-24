@@ -4,8 +4,8 @@ import { Context } from "../store/appContext.js";
 
 import "../../styles/segundoperfil.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./../component/Buscador.jsx";
-import "./../pages/home.js";
+import "../component/Buscador.jsx";
+import "./home.js";
 
 
 export const SegundoPerfil = () => {
@@ -141,8 +141,8 @@ export const SegundoPerfil = () => {
               style={{ display: "none" }}
             />
           </div>
-          <div className="provider-name text-center">
-            <div className="provider-name-text">{profileData?.firstName}{" "}{profileData?.lastName}</div>
+          <div className="provider-name text-center ">
+            <div className="provider-name-text" style={{marginLeft:"50px", marginTop: "20px"}}>{profileData?.firstName}{" "}{profileData?.lastName}</div>
           </div>
           <div className="jobs">
             {profileData?.jobs?.map((job, index) => (
@@ -169,8 +169,13 @@ export const SegundoPerfil = () => {
             <div className="description">
               {" "}
               {profileData.description}<strong>Comuna:</strong>{" "}
-              {profileData.comuna},{" "}<strong>Telefono:</strong> {profileData.telefono},{""}
-              <strong>Email: </strong>{profileData.email}
+              {profileData.comuna}{" "}
+              <div>
+              <strong>Telefono:</strong> {profileData.telefono}{""}
+              </div>
+              <div>
+              <strong>Email:</strong>{profileData.email}
+              </div>
             </div>
           </div>
           <div className="ratings-section">

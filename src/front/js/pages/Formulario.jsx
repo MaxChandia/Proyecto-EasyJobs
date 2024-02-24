@@ -4,7 +4,7 @@ import { Form, Button, Container, Row, Col, Modal } from "react-bootstrap";
 import "../../styles/elotroformulario.css";
 import { Link } from "react-router-dom";
 import { Context, actions} from "../store/appContext";
-import "./../pages/perfil";
+import "./perfil";
 
 export const OtroFormulario = (props) => {
   const { store, actions } = useContext(Context);

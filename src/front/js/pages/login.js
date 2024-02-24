@@ -119,13 +119,13 @@ const Login = () => {
               Iniciar sesión
             </button>
 
-            <Link to="/Home">
+            <Link to="/">
               <button
                 type="button"
                 className="btn btn-danger mt-5"
                 onClick={() => window.close()}
               >
-                Cerrar
+                Volver
               </button>
             </Link>
           </div>

@@ -63,3 +63,6 @@ class UserPublicacion(db.Model):
             "rubro": self.rubro,
             "fecha": self.fecha,
         }
+   
+    def get_id(self):
+        return str(self.idPublicacion)

@@ -1,7 +1,7 @@
 // footer.js
 import React, { Component } from "react";
 
-export const footer = () => {
+export const Footer = () => {
   return (
     <footer className="Footer">
       <p>easyjobs!</p>

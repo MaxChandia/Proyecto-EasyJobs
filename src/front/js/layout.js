@@ -1,32 +1,16 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
-import { BackendURL } from "./component/backendURL";
-
 import { Home } from "./pages/home";
-
-import { Demo } from "./pages/demo";
-import { Single } from "./pages/single";
 import { Login } from "./pages/login";
-
 import { Perfil } from "./pages/perfil";
-import { SegundoPerfil } from "./pages/SegundoPerfil";
-
+import { SegundoPerfil } from "./pages/PerfilPublicaciones.js";
 import injectContext from "./store/appContext";
-
 import { Navbar } from "./component/navbar";
-import { Footer } from "./component/footer";
-
-import { Formulario } from "./component/Formulario.jsx";
-import { OtroFormulario } from "./component/OtroFormulario.jsx";
-import { Buscador } from "./component/Buscador.jsx";
+import { OtroFormulario } from "./pages/Formulario.jsx";
 import { Nosotros } from "./component/nosotros.js";
-import { Task } from "./component/task.js";
-import Carrousel from "./component/carrousel.js";
-import PrestadorCv from "./component/prestadorCv.js";
-
-import GeneradorPublicacion from "./component/generadorPublicacion";
-import { Landing } from "./component/landing2.js";
+import PrestadorCv from "./pages/prestadorCv.js";
+import GeneradorPublicacion from "./pages/generadorPublicacion.js";
 
 //create your first component
 const Layout = () => {
@@ -44,28 +28,15 @@ const Layout = () => {
           <Navbar />
           <Routes>
             <Route element={<Home />} path="/" />
-            <Route element={<Demo />} path="/demo" />
-            <Route element={<Single />} path="/single" />
-            <Route element={<Single />} path="/single/:theid" />
             <Route element={<Login />} path="/login" />
-            <Route element={<Footer />} path="/footer" />
-            <Route element={<Buscador />} path="/buscador" />
+            <Route element={<PrestadorCv />} path="/Trabajos" />
             <Route element={<OtroFormulario />} path="/Registro" />
-            <Route element={<Formulario />} path="/RegistroPrestador" />
-            <Route element={<Carrousel />} path="/carousel" />
-            <Route element={<PrestadorCv />} path="/prestadorCV" />
-           
-            <Route
-              element={<GeneradorPublicacion />}
-              path="/generadorPublicacion"
-            />
+            <Route element={<GeneradorPublicacion />}path="/generadorPublicacion"/>
             <Route element={<Perfil />} path="/perfil" />
-            <Route element={<Landing />} path="/landing2" />
-            <Route element={<SegundoPerfil />} path="/SegundoPerfil/"/>
-            <Route element={<SegundoPerfil />} path="/SegundoPerfil/:idUsuario" />
+            <Route element={<SegundoPerfil />} path="/Prestador/"/>
+            <Route element={<SegundoPerfil />} path="/Prestador/:idUsuario" />
             <Route element={<Nosotros />} path="/nosotros" />
             <Route element={<h1>Not found!</h1>} />
-            <Route element={<Task />} path="/task" />
           </Routes>
         </ScrollToTop>
       </BrowserRouter>

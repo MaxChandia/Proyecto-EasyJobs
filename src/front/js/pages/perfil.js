@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import "../../styles/perfil.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
-// import "./../component/Buscador.jsx";
+import { Form } from "react-bootstrap";
 
 
 
@@ -16,54 +16,56 @@ const JobPost = ({
   comuna,
   rubro,
   fecha,
-  onDelete
+  onDelete, 
+  onEdit
 }) => {
+
+  const [editMode, setEditMode] = useState(false);
+  const [editedData, setEditedData] = useState({
+    titulo: titulo,
+    descripcion: descripcion,
+    comuna: comuna,
+  });
+
+  const handleInputChange = (e) => {
+    setEditedData({
+      ...editedData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSave = () => {
+    onEdit(idPublicacion, editedData);
+    setEditMode(false);
+  };
   // Lógica o JSX relacionado con JobPost
 
-  return (
-    <div
-      style={{
-        border: "1px solid #ccc",
-        padding: "10px",
-        marginBottom: "15px",
-        backgroundColor: "white", // Fondo blanco
-        display: "flex", // Mostrar en formato flex
-        flexDirection: "column", // Alinear elementos en columna
-      }}
-    >
-      <div
-        style={{
-          borderLeft: "5px solid red", // Línea de color rojo en el lado izquierdo
-          padding: "5px",
-        }}
-      >
-        <h3>{titulo}</h3>
-        <p>
-          <strong>Nombre:</strong> {nombre} {apellido}
-        </p>
-        <p>
-          <strong>Descripción:</strong> {descripcion}
-        </p>
-        <p>
-          <strong>Comuna:</strong> {comuna}
-        </p>
-        <p>
-          <strong>Categoría:</strong> {rubro}
-        </p>
-        <p>
-          <strong>Fecha:</strong> {fecha}
-        </p>
-      </div>
-      <button
-        className="btn btn-danger"
-        onClick={() => onDelete(idPublicacion)}
-      >
-        Borrar
-      </button>
+return (
+    <div>
+      {!editMode ? (
+        <div>
+          <h3>{titulo}</h3>
+          <p><strong>Nombre: </strong>{nombre} {apellido}</p>
+          <p><strong>Fecha: </strong>{fecha}</p>
+          <p><strong>Descripción: </strong>{descripcion}</p>
+          <p><strong>Comuna: </strong>{comuna}</p>
+          <p><strong>Caregoría: </strong>{rubro}</p>
+          <div className="btn-group">
+            <button className="btn btn-secondary m-2" onClick={() => setEditMode(true)}>Editar</button>
+            <button className="btn btn-danger m-2" onClick={() => onDelete(idPublicacion)}>Borrar</button>
+          </div>
+        </div>
+      ) : (
+        <div>
+          <input type="text" name="titulo" value={editedData.titulo} onChange={handleInputChange} />
+          <input type="text" name="descripcion" value={editedData.descripcion} onChange={handleInputChange} />
+          <input type="text" name="comuna" value={editedData.comuna} onChange={handleInputChange} />
+          <button className="btn btn-primary m-2" onClick={handleSave}>Guardar</button>
+        </div>
+      )}
     </div>
   );
 };
-
 
 
 
@@ -173,6 +175,25 @@ const handleInputChange = (e) => {
     }
   };
 
+  const handleEditPublication = async (id, newData) => {
+    try {
+        const response = await fetch(`http://localhost:3001/publicacion/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(newData) // Aquí pasamos los nuevos datos
+        });
+        if (response.ok) {
+            console.log(`Publicación con ID ${id} actualizada exitosamente.`);
+        } else {
+            console.error("error al actualizar la publicación");
+        }
+    } catch (error) {
+        console.error("error en red", error);
+    }
+};
+
   return (
     <div className="profile-container mt-4">
       <div className="header">
@@ -234,15 +255,24 @@ const handleInputChange = (e) => {
           />
         </div>
         <div className="form-group mt-2">
-          <label htmlFor="rubro">Rubro:</label>
-          <input
-            type="text"
-            id="rubro"
-            name="rubro"
-            value={formData.rubro}
-            onChange={handleInputChange}
-          />
-        </div>
+        <label htmlFor="comuna">Rubro:</label>
+        <select
+              className="form-select"
+              style={{ border: '1px solid black' }}
+              value={formData.rubro}
+              onChange={handleInputChange}
+              name="rubro"
+              required
+              >
+              <option value="">Seleccionar Rubro</option>
+              <option value="Aseo">Aseo</option>
+              <option value="Carpintería">Carpintería</option>
+              <option value="Gasfitería">Gasfitería</option>
+              <option value="Pintor">Pintor</option>
+              <option value="Electricista">Electricista</option>
+              {/* Agregar más opciones de rubro según sea necesario */}
+            </select>
+          </div>
       </form>
       <div className="button-container">
       <button
@@ -261,7 +291,7 @@ const handleInputChange = (e) => {
           Guardar
         </button>
        <Link to="/generadorPublicacion">
-          {["Electricista", "Carpintero", "Pintor", "Gasfitería", "Aseo"].includes(formData.rubro) && (
+          {["Electricista", "Carpintería", "Pintor", "Gasfitería", "Aseo"].includes(formData.rubro) && (
             <button
               className="action-button custom-button"
               style={{
@@ -302,6 +332,7 @@ const handleInputChange = (e) => {
           <div key={index} className="col mb-3">
             <JobPost {...element} 
             onDelete={(id) => handleDelete(id)}
+            onEdit={(id) => handleEditPublication(id)}
             />
           </div>
         )})}
