@@ -4,8 +4,8 @@ import { Context } from "../store/appContext.js";
 
 import "../../styles/segundoperfil.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./../component/Buscador.jsx";
-import "./../pages/home.js";
+import "../component/Buscador.jsx";
+import "./home.js";
 
 
 export const SegundoPerfil = () => {

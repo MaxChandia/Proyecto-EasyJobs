@@ -59,7 +59,7 @@ export const Carrousel = () => {
           }}
         >
           {" "}
-          <Link to="/prestadorCV">
+          <Link to="/Trabajos">
           <button
             style={{
               marginRight: "-0.1%",

@@ -137,7 +137,7 @@ export const Home = () => {
           style={{
             fontFamily: "Calibri",
             color: "#001F3F",
-            marginTop: "25%",
+            marginTop: "20%",
             paddingBottom: "2%",
             textAlign: "center",
             transition: "background-color 0.1s ease transform 0.3s ease-in-out",
@@ -159,14 +159,15 @@ export const Home = () => {
           <strong>SOBRE NOSOTROS</strong>
         </h2>
 
-        <div className="container  mt-lg-5">
+        <div className="container mt-lg-5">
           <div className="row">
-            <div className="col-md-6">
+            <div className="col-md-3">
               <div
                 className="card mb-4"
                 style={{
                   borderRadius: "30px",
                   transition: "transform 0.3s ease-in-out",
+                  background: "#82d2eb"
                 }}
                 onMouseOver={(e) =>
                   (e.currentTarget.style.transform = "scale(1.05)")
@@ -201,12 +202,13 @@ export const Home = () => {
               </div>
             </div>
 
-            <div className="col-md-6">
+            <div className="col-md-3" >
               <div
                 className="card mb-4"
                 style={{
                   borderRadius: "30px",
                   transition: "transform 0.3s ease-in-out",
+                  background: "#82d2eb"
                 }}
                 onMouseOver={(e) =>
                   (e.currentTarget.style.transform = "scale(1.05)")
@@ -240,12 +242,13 @@ export const Home = () => {
                 </div>
               </div>
             </div>
-            <div className="col-md-6">
+            <div className="col-md-3">
               <div
                 className="card mb-4"
                 style={{
                   borderRadius: "30px",
                   transition: "transform 0.3s ease-in-out",
+                  background: "#82d2eb"
                 }}
                 onMouseOver={(e) =>
                   (e.currentTarget.style.transform = "scale(1.05)")

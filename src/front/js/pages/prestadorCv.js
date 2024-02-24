@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import "../../styles/prestadorCv.css";
 
-import "./../pages/home.js";
+import "./home.js";
 
 // // const data = [
 //   {
